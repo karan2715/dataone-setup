@@ -33,9 +33,11 @@ After creating the DataOne Databricks App, attach:
 |---|---|---|
 | `DataOne NL2SQL and Data Quality` Genie space | Can run | `genie-space` |
 | SQL warehouse printed by the notebook | Can use | `sql-warehouse` |
-| `dataone-file-quality-job` | Can manage run | `job` |
-| `workspace.dataone_dq.uploads` | Read and write | `volume` |
-| `workspace.dataone_dq.file_quality_results` | Select | `table` |
+| `dataone-file-quality-job` | Can manage run | `dq-job` |
+| `workspace.dataone_dq.uploads` | Read and write | `dq-volume` |
+| `workspace.dataone_dq.file_quality_results` | Select | `dq-results-table` |
+
+For persistent DataOne application state, attach a Lakebase Autoscaling database resource. Databricks injects its connection settings and short-lived credentials automatically; users do not create a `dataone-app` secret scope. If Lakebase is not attached yet, DataOne opens in temporary setup mode so installation can be completed, but app settings are not durable across restarts.
 
 The app service principal is created with the app, so these app-resource grants happen after app creation. Source catalogs and tables selected in DataOne also require `USE CATALOG`, `USE SCHEMA`, and `SELECT` for that service principal.
 

@@ -220,10 +220,19 @@ summary = {
     "genie_space_id": genie_space_id,
     "schedule": "on_demand",
     "timezone": "UTC",
+    "app_resource_keys": {
+        "genie_space_id": "genie-space",
+        "warehouse_id": "sql-warehouse",
+        "job_id": "dq-job",
+        "upload_volume": "dq-volume",
+        "quality_results_table": "dq-results-table",
+    },
     "next_step": (
         "Create the DataOne app, then attach this job (CAN_MANAGE_RUN), Genie space as resource "
         "'genie-space' (CAN_RUN), SQL warehouse as resource 'sql-warehouse' (CAN_USE), upload "
-        "volume (READ/WRITE), and quality-results table (SELECT)."
+        "volume as 'dq-volume' (READ/WRITE), and quality-results table as 'dq-results-table' "
+        "(SELECT). Attach a Lakebase Autoscaling database resource for persistent app state; "
+        "no customer-created secret scope is required."
     ),
 }
 stage("complete")
